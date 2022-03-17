@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    	<title>DOMINOE's</title>
+	<link href="style.css" rel="stylesheet">
+	<script src="js.js"></script>
+</head>
+<body>
+    
+
+
+
+	<div id="box">
+        <div class="menus" id ="login">
+            <h1>DOMINOE's</h1>
+                <form id="formulário">
+                    <p>FAÇA O SEU REGISTO ANTES DE COMEÇAR A JOGAR!</p>
+                    <div>
+                        <input id ="username" placeHolder ="Nome de utilizador " type="text" autofocus>
+                        <input id="password" placeHolder="Senha" type="password">
+                        <input class ="btn" type="button" value="Login" onclick ="interface.efetuarLogin()">
+                    </div>
+                </form>
+        </div>
+        <div class="menus" id ="menu-1">
+            <h1>DOMINOE's</h1>
+                <ul>
+                    <li><a class="size" href="#" onclick= "interface.mostrarDificuldades()">JOGAR CONTRA COMPUTADOR</a></li>
+                    <li><a onclick="funcJogar.join()">JOGAR CONTRA OUTRO JOGADOR</a></li>
+                    <li><a class="size" href="#" onclick= "interface.mostrarRegras()">REGRAS DO JOGO</a></li>
+                    <li><a href="#" onclick="interface.certezaLogout()">LOGOUT</a></li>
+                </ul>
+                <span id="demo"></span>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div id="principal">
+        <header>
+            <h1>DOMINOE's</h1>
+        </header>
+        <div id="temp">
+            <span id="menu-2" onclick="interface.mostrarMenu2()">MENU</span>
+            <span id ="texto"></span>
+        </div>
+        <div id="caixa3">
+            <span id="computador">Computador</span>
+            <div class="mao" id="Comp"></div>
+        </div>
+        <div id="tabuleiro"><div id="jogo"></div></div>
+        <div id="caixas">
+            <div id="caixa2">
+                <h3>Monte</h3>
+                <div class="mao" id="Montee" draggable=true></div>
+            </div>
+            <div id="caixa1">
+                <span id="jogador"></span>
+                <div class="mao" id="maoJogador"></div>
+                <div id="escolhas">
+                        <p>ESCOLHA O LADO:</p>
+                        <div>
+                            <span><input id="esquerda" type="button" value="ESQUERDA" onclick="funcJog.escolherladoEsquerdo()"></span>
+                            <span><input id="direita" type="button" value="DIREITA" onclick="funcJog.escolherladoDireito()"></span>
+                        </div>         
+                    </div>
+            </div>
+        </div>
+        <div>
+            <span><input type="button" id="passaJogada" value="Passar" onclick="funcJog.passarJogadaJog()" disabled></span>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!--CAIXAS-->
+    <div class = "menuSec">
+        <div id="menuJogo">
+            <span class="X" onclick="interface.voltarJogo()">X</span>
+            <ul>
+                <li onclick="interface.mostrarEstatística()">Estatísticas</li>
+                <li id="desistirComp" onclick="interface.certezaDomino()">Desistir do jogo</li>
+                <!--<li onclick="interface.novoJogo()">Novo jogo</li>-->
+                <li onclick="funcJogar.sairEspera()" id="desistirPVP">Desistir do jogo</li>
+                <li onclick ="interface.mostrarComandos()">Comandos</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="comandos" class="menus">
+        <h2>COMANDOS</h2>
+        <div id="p1">
+            <span class="X" onclick="interface.voltarMenu()">X</span>
+            <p>As funcionalidades normais de um jogo de dominó estão presentes nesta versão:</p>
+            <p>Se quiser <b>girar a pedra</b> de modo a que a jogada seja possível, terá que usar a roda do rato até à posição pretendida.</p>
+            <p>Se quiser colocar a pedra no tabuleiro basta clicar nela que automaticamente irá ser colocada no tabuleiro na posição certa, exceto quando é possível jogar em ambos os lados do tabuleiro. Nesse caso, irão aparecer dois botões onde poderá escolher o sítio onde colocar a pedra.</p>
+            <p>Quando deixar de haver pedras no monte, então um botão que se encontra na zona do jogador irá "abrir" e será possível passar a jogada.</p>
+        </div>
+    </div>
+
+    <div id="certeza">
+        <p>Tem a certeza que deseja desistir?</p>
+        <input type="button" onclick="interface.desistirJogo()" class="btn" value="SIM">
+        <input type="button" onclick="interface.voltarMenu2()" class="btn" value="NÃO">
+    </div>
+
+    <div id="dificuldades">
+        <h2>Escolha a dificuldade:</h2>
+        <ul>
+            <li onclick = "interface.mostrarTabuleiro();funcComp.setDifficuldadeFacil()">Normal</li> <!--Ver as dificuldades-->
+            <li onclick="interface.mostrarTabuleiro();funcComp.setDifficuldadeDificil()">Difícil</li>
+        </ul>
+    </div>
+    
+
+    <div class="container" id="classificacao">
+        <h2>CLASSIFICAÇÃO</h2>
+        <br>
+        <span id="mensagem"></span>
+        <br>
+        <br>
+        <span id="pontos"></span>
+        <br>
+	<br>
+	<br>
+
+        <span id="verStat" onclick="interface.mostrarStat()">VER ESTATÍSTICAS</span>
+
+        <div id="menuClass">
+            <ul>
+                <li id="novoJogo" onclick="interface.novoJogo()">Novo Jogo</li>
+                <li id="menuPrincipal" onclick="interface.voltarMenuPrinc()">Menu Principal</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="certezaLogout">
+        <p>Tem a certeza que deseja fazer logout?</p>
+        <input type="button" onclick="interface.efetuarLogout()" class="btn" value="SIM">
+        <input type="button" onclick="interface.voltarClass()" class="btn" value="NÃO">
+    </div>
+
+    <div id="estatisticas" class="menus">
+        <span id="voltarStatMenu" class="voltar" onclick="interface.voltarMenu()">Voltar</span>
+        <span id="voltarStatClass" class="voltar" onclick="interface.voltarMenuClass()">Voltar</span>
+        <h2>Estatísticas</h2>
+        <div id="caixaTab">
+            <div id="normal">
+                <p>NORMAL</p>
+                <table class="tabela" id="tabNormal">
+                    <tr>
+                        <th>Jogos</th>
+                        <th>Computador </th>
+                        <th>Jogador</th>
+                    </tr>
+                </table>
+                <div>
+                    <span>TOTAL</span><span id="CompTotalN">0</span><span id="JogTotalN">0</span>
+                </div>
+            </div>
+            <div id="dificil">
+                <p>DIFICIL</p>
+                <table class="tabela" id="tabDificil">
+                    <tr>
+                        <th>Jogos</th>
+                        <th>Computador </th>
+                        <th>Jogador</th>
+                    </tr>
+                </table>
+                <span>TOTAL</span><span id="CompTotalD">0</span><span id="JogTotalD">0</span>
+            </div>
+        </div>
+
+
+        <div id="ranking">
+            <p>Ranking</p>
+            <table class="tabela" id="rankingID">
+                <tr>
+                    <th>NICK</th>
+                    <th>Vitórias </th>
+                    <th>Jogos</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="esperar" class="menus">
+        <p>ESPERA POR UM OUTRO JOGADOR</p>
+        <div id="canv"><canvas id="canvas" width=100 height="100">123</canvas></div>
+        <input type="button" value="Sair" class="btn" onclick ="funcJogar.sairEspera()">
+    </div>
+
+    <!--CAIXAS-->
+
+
+
+
+
+
+    
+
+    <div class ="menus" id ="regras">
+        <h2>REGRAS DO JOGO</h2>
+        <span class="voltar" onclick="interface.voltarInicio()">VOLTAR</span>
+        <br>
+        <div id="pag1">
+            <p>Esta versão do jogo de dominó é jogada entre duas pessoas em que há 28 pedras ao todo.</p>
+            <p>Ao conjunto das pedras dos jogadores diz-se "mão".</p>
+            <p>Cada mão será constituída por <b>7</b> peças escolhidas aleatoriamente; e as restantes <b>14</b> pedras irão para o monte.</p>
+            <br>
+            <h3><b>Começo do Jogo</b></h3>
+            <p>Começa a jogar aquele que tiver a maior pedra (a pedra 6-6), mas existe o caso em que esta pedra se encontra no monte, como tal irá ser contada a próxima pedra mais alta (cuja soma dos dois extremos é maior).</p>
+            <p>A segunda jogada terá de ser em conta com a primeira, ou seja, para ser válida o valor das duas pedras justapostas terá de ser o mesmo.</p>
+            <span class="baixo">1/4</span>
+            <span class ="frente" onclick="interface.pag2()">-></span>    
+        </div>
+        <div id="pag2">
+            <h3><b>Desenrolar do Jogo</b></h3>
+            <p>Os jogadores jogam alternadamente e o jogo continua até haver pedras de ambos lados que possibilitam a jogada.</p>
+            <p>Caso isso não aconteça (basta não haver correspondência entre as pedras do tabuleiro e da mão dos jogadores), então o monte estará aberto.</p>
+            <p>O monte voltará a fechar quando houver pedras para jogar.</p>
+            <p><b>Quando o monte acabar</b>, será possível passar a jogada através de um botão que se encontra vísivel na área do jogador.</p>
+            <span class="baixo">2/4</span>
+            <span class ="frente" onclick="interface.pag3()">-></span>
+            <span class ="frente tras" onclick ="interface.voltarpag1()">&lt;-</span>
+        </div>
+        <div id="pag3">
+            <h3><b>Fim de jogo:</b></h3>
+            <p>O jogo termina quando um jogador ficar sem peças, neste caso esse jogador é o <b>vencedor.</b></p>
+            <p>Se o jogo estiver fechado (ou seja o mesmo valor aparecer nas pedras 7 vezes e estiver nas extremidades), então o jogo termina e os jogadores não podem jogar mais.</p>
+            <br>
+            <p>Ganha o jogador que tiver o menor número de pontos em mão (se não houver pedras então contam-se 0 pontos) e esses pontos são a soma dos pares de valores das suas pedras.</p>
+            <span class="baixo">3/4</span>
+            <span class ="frente" onclick="interface.pag4()">-></span>
+            <span class ="frente tras" onclick="interface.voltarpag2()">&lt;-</span>
+        </div>
+        <div id="pag4">
+            <h3><b>Pontuação e classificações</b></h3>
+            <p>Relativamente à pontuação, é contada o número de pontos que se encontram na mão dos jogadores. Se os pontos de um é menor do que do outro então o primeiro será o vencedor. Se ambos forem iguais então haverá empate e será possibilitado realizar um novo jogo com as mesmas configurações escolhidas.</p>
+            <br>
+            <p>O menu das classificações irá aparecer logo após haver um vencedor, em que irá apresentar a pontuação de cada jogador. </p>
+            <span class="baixo">4/4</span>
+            <span class ="frente tras" onclick="interface.voltarpag3()">&lt;-</span>
+        </div>
+    </div>
+</body>
+</html>
+

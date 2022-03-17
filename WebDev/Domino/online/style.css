@@ -1,0 +1,683 @@
+@import url('https://fonts.googleapis.com/css?family=Fascinate+Inline&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bitter&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Bitter';
+}
+
+#canv{
+    position: inherit;
+}
+
+/*MUITO IMPORTANTES*/
+
+#box{
+    position: relative;
+}
+.menus{
+    position: inherit;
+    width: 40%;
+    background-color: #d1d1a3;
+    margin: auto;
+    margin-top: 15vw;
+    border: 0.3vw solid black;
+    border-radius: 1vw;
+    text-align: center;
+    padding: 3vw;
+}
+
+#login{
+    display: block;
+    bottom: 2vw;
+}
+
+#login h1{
+    font-size: 3vw;
+}
+
+#login #reg{
+    font-size: 1vw;
+    position: absolute;
+    bottom: 1.4vw;
+}
+
+#username{
+    padding:0.6vw;
+    border: 0.2vw solid black;
+    font-size: 1vw;
+}
+
+#password{
+    padding:0.6vw;
+    border: 0.2vw solid black;
+    font-size: 1vw;
+}
+.btn{
+    padding:0.4vw 0.5vw;
+    font-size: 1vw;
+    cursor: pointer;
+}
+
+#formulário{
+    margin-top:2vw;
+    font-size: 3vw;
+}
+
+#formulário div{
+    margin-top: 2vw;
+}
+
+#formulário p{
+    font-size: 1.3vw;
+    font-weight: bold;
+}
+
+#menu-1{
+    display: none;
+    position: relative;
+    bottom: 10vw;
+}
+
+#menu-1 h1{
+    position: inherit;
+    width: 100%;
+    font-size: 3vw;
+}
+
+
+#menu-1 ul{
+    width: 80%;
+    margin:auto;
+    list-style-type: none;
+    text-align: center;
+}
+
+#menu-1 li{
+    margin-top: 5vw;
+    cursor: pointer;
+}
+
+#menu-1 a{
+    text-decoration: none;
+    color: black;
+    font-size: 2vw;
+}
+
+#menu-1 a:hover{
+    font-weight: bold;
+}
+
+#esperar{
+    display: none;
+}
+
+#esperar p{
+    font-size: 2vw;
+}
+
+#esperar .btn{
+    width: 20%;
+    margin: auto;
+}
+
+#demo{
+    position: absolute;
+    right: 1vw;
+    bottom: 1vw;
+    margin-right: 1vw;
+    font-size: 1vw;
+}
+
+#dificuldades{
+    position: fixed;
+    width: 40%;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    margin-top: -16vw;
+    margin-left: -18vw;
+    height: 17vw;
+    background-color: #d1d1a3;
+    border: 0.4vw solid black;
+    border-radius: 1vw;
+    display: none;
+}
+
+#dificuldades h2{
+    margin-top: 2vw;
+    font-size: 2vw;
+}
+
+#dificuldades ul{
+    list-style-type: none;
+}
+
+#dificuldades li{
+    cursor: pointer;
+    margin:2vw 0px 4vw 0px;
+    font-size: 2vw;
+}
+
+#dificuldades li:last-child{
+    margin-bottom: 0;
+}
+
+#dificuldades li:hover{
+    font-weight: bold;
+}
+
+#principal{
+    display: none;
+    background-color: #d1d1a3;
+    width:70vw;
+    margin: auto;
+    border: .3vw solid black;
+}
+#principal header{
+    text-align: center;
+    font-size: 1vw;
+    border-bottom: .3vw solid black;
+}
+
+#temp{
+    position: relative;
+    border-bottom:.3vw solid black;
+    height: 2vw;
+}
+
+#texto{
+    font-size: 1vw;
+    position: absolute;
+}
+
+#menu-2{
+    position: inherit;
+    float: right;
+    pointer-events: none;
+    font-size: 1.5vw;
+    cursor: pointer;
+}
+
+#menu-2:hover{
+    font-weight: bold;
+}
+
+#caixa3{
+    position: relative;
+    height: 10vw;
+    text-align: center;
+}
+
+#caixa3 h3{
+    font-size: 1.5vw;
+}
+#tabuleiro{
+    position: relative;
+    height:9vw;
+    background-color:#b5b584;
+    border-top:0.3vw solid black;
+    border-bottom:0.3vw solid black;
+    margin: 0 auto;
+    text-align:center;
+    overflow: auto;
+    font-size: 5vw;
+    white-space: normal;
+}
+
+#jogo{
+    margin: 0 4vw;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+#caixas{
+    text-align: center;
+    position: relative;
+}
+
+#caixa1{
+    width: 100%;
+    margin: auto 0;
+    pointer-events:none;
+    height: 9.5vw;
+}
+
+#caixa1 #jogador{
+    font-size: 1.5vw;
+}
+
+#passaJogada{
+    position: inherit;
+    padding: 0 2vw;
+    font-size: 0.9vw;
+}
+
+#escolhas{ /*Só acontecerá quando houver a questão de haver duas decisões em ambos os lados do tabuleiro*/
+    display: none;
+    text-align: center;
+    position: absolute;
+    right: 2vw;
+    bottom: 6vw;
+    font-size: 1vw;
+}
+
+#escolhas input{
+    font-size: 0.9vw;
+}
+
+#Montee{
+    letter-spacing: .3vw;
+}
+
+#maoJogador{
+    letter-spacing: .3vw;
+}
+#caixa2 h3{
+    font-size: 1.5vw;
+}
+
+#caixa2{
+    height: 6.5vw;
+    border-bottom: 0.3vw solid black;
+    pointer-events:none;
+}
+
+
+.menuSec{
+    background-color: #d1d1a3;
+    position: fixed; 
+    top: 10%;
+    left: 35%;
+    padding: 7vw 9vw;
+    border: .4vw solid black;
+    display: none;
+    border-radius:1vw;
+}
+
+#desistirComp{
+    display:block;
+}
+
+#desistirPVP{
+    display: none;
+}
+
+#menuJogo{
+    width:100%;
+}
+#menuJogo ul{
+    list-style-type: none;
+    position: inherit;
+    
+}
+
+#menuJogo li{
+    cursor: pointer;
+    font-size: 2vw;
+    margin-top: 2vw;
+}
+
+.menuSec li:hover{
+    font-weight: bold;
+}
+
+#certeza{
+    display: none;
+    background-color: #d1d1a3;
+    position: absolute;
+    width: 40vw;
+    top: 25%;
+    left: 30%;
+    height: 10vw;
+    text-align: center;
+    border: .3vw solid black;
+    border-radius: 1vw;
+    margin-top: 3vw;
+}
+
+#certeza p{
+    font-size: 2vw;
+    margin-top: 1vw;
+}
+
+#certeza .btn{
+    padding:1vw 3vw 1vw 3vw;
+    margin-top: 1.5vw;
+}
+
+#certezaLogout{
+    display: none;
+    background-color: #d1d1a3;
+    position: absolute;
+    width: 40vw;
+    top: 25%;
+    left: 30%;
+    height: 10vw;
+    text-align: center;
+    border: .3vw solid black;
+    border-radius: 1vw;
+    margin-top: 3vw;
+}
+
+#certezaLogout p{
+    font-size: 2vw;
+    margin-top: 1vw;
+}
+
+#certezaLogout .btn{
+    padding:1vw 3vw 1vw 3vw;
+    margin-top: 1.5vw;
+}
+
+#estatisticas{
+    text-align: left;
+    white-space: normal;
+    display:none;
+    position: absolute;
+    top:0;
+    right: 27vw;
+}
+
+#estatisticas h2{
+    text-align:center;
+    font-size: 2vw;
+    margin-bottom: 2vw;
+}
+
+#mensagem{
+    font-size: 2vw;
+}
+
+#pontos{
+    font-size: 1vw;
+}
+
+
+#estatisticas p{
+    font-weight: bold;
+}
+
+#voltarStatClass{
+    display:none;
+}
+
+#normal{
+    float: right;
+    overflow-y: scroll;
+    height: 8vw;
+    width: 40%;
+}
+
+#dificil{
+    overflow-y: scroll;
+    height: 8vw;
+    width: 40%;
+}
+
+#tabNormal{
+   font-size:1vw;
+}
+
+#tabDificil{
+   font-size: 1vw;
+}
+
+.tabela{
+    text-align: center;
+}
+
+#CompTotalN{
+    margin-left: 2.6vw;
+}
+
+#JogTotalN{
+    margin-left: 4.33vw;
+}
+
+#CompTotalD{
+    margin-left: 2.6vw;
+}
+
+#JogTotalD{
+    margin-left: 4.33vw;
+}
+
+#ranking{
+    text-align: center;
+    margin: 1vw auto;
+    overflow-y: scroll;
+    height: 8vw;
+    width: 40%;
+}
+
+#comandos{
+    background-color: #d1d1a3;
+    bottom: 20vw;
+    left: 27vw;
+    position: absolute;
+    border: .4vw solid black;
+    display: none;
+    border-radius: 1vw;
+    font-size: 1.3vw;
+}
+
+#p1{
+    display: block;
+}
+
+#p2{
+    display: none;
+}
+
+.X{
+    position: absolute;
+    top: 1vw;
+    right:1vw;
+    cursor: pointer;
+    border: 0.1vw solid black;
+    padding:0 0.2vw;
+    font-size: 1.5vw;
+}
+
+.X:hover{
+    background-color: red;
+    color: white;
+}
+
+#Montee{
+    cursor:pointer;
+}
+
+#classificacao{
+    display: none;
+    width: 60%;
+    height: 30vw;
+    position: fixed;
+    top:30%;
+    left: 35%;
+    margin-top: -13vw;
+    margin-left: -15vw;
+    border: 0.4vw solid black;
+    background-color: #d1d1a3;
+    border-radius: 2vw;
+    text-align: center;
+}
+
+#classificacao h2{
+    margin-top: 1.5vw;
+    font-size: 2vw;
+}
+
+#classificacao p{
+    text-align: justify;
+    width: 85%;
+    margin: 2vw auto;
+    font-size: 1vw;
+}
+
+#verStat{
+    font-size: 1.5vw;
+    cursor: pointer;
+}
+
+#verStat:hover{
+    font-weight: bold;
+}
+
+#menuClass{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    border-top: .3vw solid black;
+    box-sizing: border-box;
+}
+
+#menuClass ul{
+    list-style-type: none;
+    font-size: 2vw;
+    width: 100%;
+}
+
+#menuClass li{
+    display: inline-block;   
+    padding:2.3vw;
+    width: 30;
+    cursor: pointer;
+}
+
+#menuClass #novoJogo{
+    border-right: 0.3vw solid black;
+}
+
+#menuClass #menuPrincipal{
+    border-right: 0.3vw solid black;
+}
+#menuClass li:hover{
+    background-color: #b3b37f;
+    color:black;
+}
+
+
+#menuClass li:hover{
+    font-weight: bold;
+}
+
+#regras{
+    display: none;
+    position: relative;
+    bottom: 10vw;
+}
+
+#regras p{
+    text-align: justify;
+    font-size: 1.3vw;
+    line-height: 2vw;
+}
+
+#regras h3{
+    font-size: 1.7vw;
+}
+
+#regras h2{
+    font-size: 2vw;
+}
+
+#regras span{
+    font-size: 1.2vw;
+}
+
+.voltar{
+    cursor: pointer;
+    position: absolute;
+    top: 2vw;
+    right: 2vw;
+    font-size: 1.2vw;
+}
+
+.voltar:hover{
+    font-weight:bold;
+}
+
+
+.frente{
+    position: absolute;
+    bottom: 1vw;
+    right: 1.2vw;
+    cursor: pointer;
+}
+
+.frente:hover{
+    font-weight: bold;
+}
+
+.tras{
+    position: absolute;
+    bottom: 1vw;
+    right: 2.5vw;
+    cursor: pointer;
+}
+
+.tras:hover{
+    font-weight: bold;
+}
+
+.baixo{
+    position: absolute;
+    bottom: 0;
+}
+
+#pag1{
+    display: block;
+}
+
+#pag2{
+    display: none;
+}
+#pag3{
+    display: none;
+}
+
+#pag4{
+    display: none;
+}
+.mao{   
+    width: 100%;
+    margin: auto;
+    text-align:center;
+    line-height: 5vw;
+}
+
+.peçaMonte{
+    font-size: 4vw;
+}
+
+.peçaTabuleiro{
+    font-size: 4vw;
+}
+
+.peçaJog{
+    cursor: pointer;
+    font-size: 4vw;
+    line-height: 5vw;
+}
+
+.peçaComp{
+    font-size: 3.5vw;
+    letter-spacing: 1vw;
+}
+
+
+
+
+/*MUITO IMPORTANTES*/
+
+h1{
+    font-family: 'Fascinate inline';
+    letter-spacing: 2vw;
+    font-weight: bold;
+}
+
+
