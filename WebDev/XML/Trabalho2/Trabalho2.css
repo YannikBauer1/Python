@@ -1,0 +1,76 @@
+table, th, td {
+    border:solid;
+}
+table {
+    border-collapse: collapse;
+    text-align:center;
+    margin:1% 0%;
+    width:25%
+}
+.divStyle{
+    background-color:#E6E6E6;
+    margin:1%;
+    border:solid;
+    border-width:thick;
+    padding:0.01em 1.7em;
+}
+.headerStyle{
+    float:left;
+    padding:0.2em 2em;
+    border:solid;
+}
+.innerDivStyle{
+    border:solid;
+    border-style:outset;
+    border-width:thick;
+}
+body{
+    background-color:#1C1C1C;
+    padding:2%;
+}
+h1 {
+    text-align:center;
+    font-size:300%;
+    font-weight:bold;
+    margin-top:-1%;
+}
+.divWidth{
+    width:43%;
+}
+#flexDiv{
+    display:flex;
+}
+#introduction{
+    padding:1em 1.7em;
+}
+#headerDiv{
+    display:flex;
+    padding:0.2em 2em;
+    border:solid;
+}
+#generalInformationDiv{
+    margin:0em -1.7em;
+}
+#meetingMembersDiv{
+    margin:1% 0%;
+}
+#meetingMembersSpan{
+    padding:0em 1em;
+    margin-left:-5px;
+}
+#topicsDiv{
+    margin:1% 0%;
+}
+#topicsSpan{
+    padding:0em 1em;
+    margin-left:-5px;
+}
+#topicsDiv2{
+    padding:1em 1em;
+}
+.sectionNumeration{
+    font-size:x-large;
+}
+#subsection{
+    margin-left:30px;
+}

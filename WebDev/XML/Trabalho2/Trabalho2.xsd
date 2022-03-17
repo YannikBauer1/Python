@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+
+<xs:complexType name="TMembersAbstained">
+    <xs:sequence>
+        <xs:element name="voter" type="TRefferedPerson" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TMembersAgainst">
+    <xs:sequence>
+        <xs:element name="voter" type="TRefferedPerson" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TMembersInFavour">
+    <xs:sequence>
+        <xs:element name="voter" type="TRefferedPerson" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TMotion">
+    <xs:sequence>
+        <xs:element name="membersInFavour" type="TMembersInFavour" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="membersAgainst" type="TMembersAgainst" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="membersAbstained" type="TMembersAbstained" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TOption">
+    <xs:sequence>
+        <xs:element name="voter" type="TRefferedPerson" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+</xs:complexType>
+
+<xs:complexType name="TAlternative">
+    <xs:sequence>
+        <xs:element name="option" type="TOption" minOccurs="2" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TVoting">
+    <xs:sequence>
+        <xs:element name="subject" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="alternative" type="TAlternative" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="motion" type="TMotion" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TParagraph" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="anotations"/>
+    </xs:choice>
+</xs:complexType>
+
+<xs:complexType name="TSubsection" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="paragraph" type="TParagraph" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:group ref="anotations"/>
+    </xs:choice>
+</xs:complexType>
+
+<xs:complexType name="TSection" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="subsection" type="TSubsection" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="paragraph" type="TParagraph" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:group ref="anotations"/>
+    </xs:choice>
+</xs:complexType>
+
+<xs:complexType name="TDiscussion" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="anotations"/>
+        <xs:element name="section" type="TSection" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:choice>
+</xs:complexType>
+
+<xs:group name="anotations">
+    <xs:sequence>
+        <xs:element name="entry" type="TRefferedPerson" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="exit" type="TRefferedPerson" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="speaker" type="TRefferedPerson" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:group>
+
+<xs:complexType name="TTopic">
+    <xs:sequence>
+        <xs:element name="topicTitle" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="discussion" type="TDiscussion" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="voting" type="TVoting" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TTopics">
+    <xs:sequence>
+        <xs:element name="topic" type="TTopic" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TRefferedPerson">
+    <xs:attribute name="IDREF" type="xs:IDREF" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="TMeetingMember">
+    <xs:sequence>
+        <xs:element name="justification" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="IDREF" type="xs:IDREF" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="TMeetingMembers">
+    <xs:sequence>
+        <xs:element name="meetingMember" type="TMeetingMember" minOccurs="3" maxOccurs="unbounded"/>
+        <xs:element name="guest" type="TMember" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TWorkOrder">
+    <xs:sequence>
+        <xs:element name="matter" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TTime">
+    <xs:sequence>
+        <xs:element name="hour" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="minute" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TSchedule">
+    <xs:sequence>
+        <xs:element name="startingTime" type="TTime" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="endingTime" type="TTime" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TGeneralInformation">
+    <xs:sequence>
+        <xs:element name="organName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="meetingType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="local" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="date" type="xs:date" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="schedule" type="TSchedule" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="workOrder" type="TWorkOrder" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="meetingMembers" type="TMeetingMembers" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="president" type="TRefferedPerson" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="meetingWriter" type="TRefferedPerson" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TMeeting">
+    <xs:sequence>
+        <xs:element name="generalInformation" type="TGeneralInformation" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="topics" type="TTopics" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TMinutes">
+    <xs:sequence>
+        <xs:element name="meeting" type="TMeeting" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="TTitle">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="Professor"/>
+        <xs:enumeration value="Doctor"/>
+        <xs:enumeration value="Coronel"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="TMember">
+    <xs:sequence>
+        <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="title" type="TTitle" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:ID" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="TEffectiveMembers">
+    <xs:sequence>
+        <xs:element name="member" type="TMember" minOccurs="3" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TDocument">
+    <xs:sequence>
+        <xs:element name="effectiveMembers" type="TEffectiveMembers" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="minutes" type="TMinutes" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:element name="document" type="TDocument"/>
+
+</xs:schema>

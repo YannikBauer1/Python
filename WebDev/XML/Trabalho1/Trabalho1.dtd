@@ -1,0 +1,66 @@
+<!ENTITY % textAnnotations "#PCDATA | entry | exit | speaker">
+
+<!ELEMENT document (effetiveMembers, minutes)>
+
+<!ELEMENT effetiveMembers (member, member, member+)>
+<!ELEMENT member (name)> 
+    <!ATTLIST member    ID      ID                             #REQUIRED
+                        title   (Doctor | Professor | Coronel) #IMPLIED>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT title (#PCDATA)> 
+
+<!ELEMENT minutes (meeting)*>
+<!ELEMENT meeting (generalInformation, topics)>
+
+<!ELEMENT generalInformation (organName, meetingType?, local, date, time, 
+                            workOrder, members, president, meetingWriter)>
+<!ELEMENT organName (#PCDATA)>
+<!ELEMENT meetingType (#PCDATA)>
+<!ELEMENT local (#PCDATA)>
+<!ELEMENT date (year, month, day)>
+<!ELEMENT day (#PCDATA)>
+<!ELEMENT month (#PCDATA)>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT time (startingTime, endingTime?)>
+<!ELEMENT startingTime (hour,minute)>
+<!ELEMENT endingTime (hour,minute)>
+<!ELEMENT hour (#PCDATA)>
+<!ELEMENT minute (#PCDATA)>
+<!ELEMENT workOrder (matter)+>
+<!ELEMENT matter (#PCDATA)>
+<!ELEMENT members (meetingMember, meetingMember, meetingMember+, guest?)+>
+<!ELEMENT meetingMember (justification?)>   
+    <!ATTLIST meetingMember IDREF IDREF #REQUIRED>
+<!ELEMENT justification (#PCDATA)>
+<!ELEMENT guest (name, title)>  
+    <!ATTLIST guest ID ID #REQUIRED>
+<!ELEMENT president EMPTY>  
+    <!ATTLIST president IDREF IDREF #REQUIRED>
+<!ELEMENT meetingWriter EMPTY>  
+    <!ATTLIST meetingWriter IDREF IDREF #REQUIRED>
+
+<!ELEMENT topics (topic)+>
+<!ELEMENT topic (topicTitle?, discussion, voting?)>
+<!ELEMENT topicTitle (#PCDATA)>
+<!ELEMENT discussion (%textAnnotations; | section | subsection | paragraph)*>
+<!ELEMENT section (%textAnnotations; | subsection | paragraph)*>
+<!ELEMENT subsection (%textAnnotations; | paragraph)*>
+<!ELEMENT paragraph (%textAnnotations;)*>
+<!ELEMENT entry EMPTY>  
+    <!ATTLIST entry IDREF IDREF #REQUIRED>
+<!ELEMENT exit EMPTY>   
+    <!ATTLIST exit IDREF IDREF #REQUIRED>
+<!ELEMENT speaker EMPTY>    
+    <!ATTLIST speaker IDREF IDREF #REQUIRED>
+
+<!ELEMENT voting (subject,( motion | alternative))>
+<!ELEMENT subject (#PCDATA)>        
+<!ELEMENT motion (membersInFavour, membersAgainst, membersAbstained)>
+<!ELEMENT membersInFavour (voter)*>
+<!ELEMENT membersAgainst (voter)*>
+<!ELEMENT membersAbstained (voter)*>
+<!ELEMENT voter EMPTY>  
+    <!ATTLIST voter IDREF IDREF #REQUIRED>
+<!ELEMENT alternative (option, option+)>
+<!ELEMENT option (voter)*>  
+    <!ATTLIST option name CDATA #REQUIRED>

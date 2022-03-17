@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:noNamespaceSchemaLocation="Trabalho1.xsd">
+
+    <effectiveMembers>
+
+        <member ID="m1">
+            <name>John Doe</name>
+            <title>Doctor</title>
+        </member>
+        <member ID="m2">
+            <name>Jane Doe</name>
+            <title>Professor</title>
+        </member>
+        <member ID="m3">
+            <name>Kate Something</name>
+            <title>Doctor</title>
+        </member>
+        <member ID="m5">
+            <name>Mel Gibsson</name>
+            <title>Coronel</title>
+        </member>
+
+
+    </effectiveMembers>
+
+    <minutes>
+        <meeting>
+
+            <generalInformation>
+                <organName>Bosses</organName>
+                <meetingType>Boarding Meeting</meetingType>
+                <local>Porto</local>
+                <date>2018-10-26</date>
+                <schedule>
+                    <startingTime>10:30</startingTime>
+                    <endingTime>12:30</endingTime>
+                </schedule>
+                <workOrder>
+                    <matter>Lights in the building</matter>
+                    <matter>Business Plan</matter>
+                </workOrder>
+                <meetingMembers>
+                    <meetingMember IDREF="m1" />
+                    <meetingMember IDREF="m2" />
+                    <meetingMember IDREF="m3" />
+                    <meetingMember IDREF="m5">
+                        <justification>Sick</justification>
+                    </meetingMember>
+                    <guest ID="m4">
+                        <name>Gui Fli</name>
+                        <title>Doctor</title>
+                    </guest>
+                </meetingMembers>
+                <president IDREF="m1" />
+                <meetingWriter IDREF="m3" />
+            </generalInformation>
+
+
+            <topics>
+                <topic>
+                    <topicTitle>Lights in the building</topicTitle>
+                    <discussion>
+                        Lorem ipsum dolor, <entry IDREF="m2" />sit amet 
+                        consectetur adipisicing elit. Eos minima labore quis 
+                        optio, dicta adipisci illo ad expedita? Libero 
+                        reprehenderit similique <exit IDREF="m1" /> officiis 
+                        repudiandae consequuntur debitis <speaker IDREF="m2" />
+                        officia, aperiam esse aliquam iste.
+                        <section>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing 
+                            elit. Eos minima labore quis optio, dicta adipisci 
+                            illo ad expedita? Libero reprehenderit similique 
+                            officiis repudiandae consequuntur debitis officia, 
+                            aperiam esse aliquam iste.
+                            Lorem ipsum dolor, <entry IDREF="m2" /> sit amet 
+                            consectetur adipisicing elit. 
+                            Eos minima labore quis optio, dicta adipisci illo ad 
+                            expedita? Libero reprehenderit similique
+                            <exit IDREF="m1" /> officiis repudiandae 
+                            consequuntur debitis <speaker IDREF="m2" />
+                            officia, aperiam esse aliquam iste.
+                            <subsection>
+                                Lorem ipsum dolor, <entry IDREF="m2" />
+                                sit amet consectetur adipisicing elit. 
+                                Eos minima labore quis optio, dicta adipisci 
+                                illo ad expedita? Libero reprehenderit similique
+                                <exit IDREF="m1" /> officiis repudiandae 
+                                consequuntur debitis <speaker IDREF="m2" />
+                                officia, aperiam esse aliquam iste.
+                                <paragraph>
+                                    Lorem ipsum dolor, <entry IDREF="m2" /> sit 
+                                    amet consectetur adipisicing elit. Eos 
+                                    minima labore quis optio, dicta adipisci 
+                                    illo ad expedita? Libero reprehenderit 
+                                    similique <exit IDREF="m1" /> officiis 
+                                    repudiandae consequuntur debitis
+                                    <speaker IDREF="m2" />
+                                    officia, aperiam esse aliquam iste.
+                                </paragraph>
+                            </subsection>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing 
+                            elit. 
+                            Eos minima labore quis optio, dicta adipisci illo ad 
+                            expedita? 
+                            Libero reprehenderit similique officiis repudiandae 
+                            consequuntur debitis officia, aperiam esse aliquam 
+                            iste.
+                            <paragraph>
+                                Lorem ipsum dolor, <entry IDREF="m2" /> sit amet 
+                                consectetur adipisicing elit. Eos minima labore 
+                                quis optio, dicta adipisci illo ad expedita? 
+                                Libero reprehenderit similique 
+                                <exit IDREF="m1" /> officiis repudiandae 
+                                consequuntur debitis <speaker IDREF="m2" />
+                                officia, aperiam esse aliquam iste.
+                            </paragraph>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing 
+                            elit. 
+                            Eos minima labore quis optio, dicta adipisci illo ad 
+                            expedita? 
+                            Libero reprehenderit similique officiis repudiandae 
+                            consequuntur debitis officia, aperiam esse aliquam 
+                            iste.
+                        </section>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                        Eos minima labore quis optio, dicta adipisci illo ad 
+                        expedita? 
+                        Libero reprehenderit similique officiis repudiandae 
+                        consequuntur debitis officia, aperiam esse aliquam iste.
+                    </discussion>
+
+
+                    <voting>
+
+                        <subject>Which light bulb should we use?</subject>
+
+                        <alternative>
+                            <option name="Bailey">
+                                <voter IDREF="m1" />
+                            </option>
+                            <option name="Calex">
+                                <voter IDREF="m2" />
+                                <voter IDREF="m4" />
+                            </option>
+                            <option name="Bic">
+                                <voter IDREF="m3" />
+                            </option>
+
+                        </alternative>
+
+                    </voting>
+                </topic>
+                <topic>
+                    <topicTitle>Business Plan</topicTitle>
+                    <discussion>
+                        Lorem ipsum dolor, <entry IDREF="m2" /> sit amet 
+                        consectetur adipisicing elit. 
+                        Eos minima labore quis optio, dicta adipisci illo ad 
+                        expedita? 
+                        Libero reprehenderit similique <exit IDREF="m1" />
+                        officiis repudiandae consequuntur debitis
+                        <speaker IDREF="m2" /> officia, aperiam esse aliquam
+                        iste.
+    
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                        Eos minima labore quis optio, dicta adipisci illo ad 
+                        expedita? 
+                        Libero reprehenderit similique officiis repudiandae 
+                        consequuntur debitis officia, aperiam esse aliquam iste.
+                    </discussion>
+                    <voting>
+                        <subject>Should we invest?</subject>
+                        <motion>
+                            <membersInFavour>
+                                <voter IDREF="m1" />
+                                <voter IDREF="m4" />
+                            </membersInFavour>
+                            <membersAgainst>
+                                <voter IDREF="m3" />
+                            </membersAgainst>
+                            <membersAbstained>
+                                <voter IDREF="m2" />
+                            </membersAbstained>
+                        </motion>
+                    </voting>
+                </topic>
+            </topics>
+        </meeting>
+        <meeting>
+            <generalInformation>
+                <organName>Human Resources</organName>
+                <local>Porto</local>
+                <date>2018-10-16</date>
+                <schedule>
+                    <startingTime>10:30</startingTime>
+                </schedule>
+                <workOrder>
+                    <matter>Party</matter>
+                </workOrder>
+                <meetingMembers>
+                    <meetingMember IDREF="m1" />
+                    <meetingMember IDREF="m3" />
+                    <meetingMember IDREF="m5" />
+                </meetingMembers>
+                <president IDREF="m1" />
+                <meetingWriter IDREF="m3" />
+            </generalInformation>
+            <topics>
+                <topic>
+                    <discussion>Ta fixe</discussion>
+                </topic>
+            </topics>
+        </meeting>
+    </minutes>
+
+</document>

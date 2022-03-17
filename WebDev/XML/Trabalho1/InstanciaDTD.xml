@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet href=".xsl" type="text/xsl"?>
+<!DOCTYPE document SYSTEM "Trabalho1.dtd">
+
+<document>
+    <effetiveMembers>
+        <member ID="m1" title="Doctor">
+            <name>John Doe</name>
+        </member>
+        <member ID="m2">
+            <name>Jane Doe</name>
+        </member>
+        <member ID="m3">
+            <name>Kate Something</name>
+        </member>
+    </effetiveMembers>
+
+    <minutes>
+        <meeting>
+            <generalInformation>
+                <organName>Bosses</organName>
+                <local>Porto</local>
+                <date>
+                    <year>2018</year>
+                    <month>10</month>
+                    <day>26</day>
+                </date>
+                <time>
+                    <startingTime>
+                        <hour>17</hour>
+                        <minute>37</minute>
+                    </startingTime>
+                    <endingTime>
+                        <hour>18</hour>
+                        <minute>40</minute>
+                    </endingTime>
+                </time>
+                <workOrder>
+                    <matter>Lights in the building</matter>
+                    <matter>Business Plan</matter>
+                </workOrder>
+                <members>
+                    <meetingMember IDREF="m1">
+                        <justification>sic</justification>
+                    </meetingMember>
+                    <meetingMember IDREF="m2" />
+                    <meetingMember IDREF="m3" />
+                    <guest ID="m4">
+                        <name>Gui Fli</name>
+                        <title>None</title>
+                    </guest>
+                </members>
+                <president IDREF="m1" />
+                <meetingWriter IDREF="m3" />
+            </generalInformation>
+
+            <topics>
+                <topic>
+                    <topicTitle>Lights in the building</topicTitle>
+                    <discussion>
+                        Lorem ipsum dolor, <entry IDREF="m2" /> sit amet 
+                        consectetur adipisicing elit. Eos minima labore quis 
+                        optio, dicta adipisci illo ad expedita? Libero 
+                        reprehenderit similique <exit IDREF="m1" /> officiis 
+                        repudiandae consequuntur debitis <speaker IDREF="m2"/>.
+                        <entry IDREF="m2" /> asdf asdf asggis kalkjl  lkasdfklj
+                        lkalskdfj sdkji qi.
+                        <section>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing 
+                            elit. Lorem ipsum dolor, <entry IDREF="m2" /> sit 
+                            amet consectetur adipisicing el Eos minima labore 
+                            quis optio, dicta adipisci illo ad expedita? Libero 
+                            reprehenderit similique <exit IDREF="m1" /> officiis 
+                            repudiandae consequuntur debitis 
+                            <speaker IDREF="m2"/> officia asdf asd dddd ds.
+                            <subsection>
+                                Lorem ipsum dolor, <entry IDREF="m2" /> sit 
+                                amet consectetur adipisicing elit. Eos minima 
+                                labore quis optio, dicta adipisci illo ad 
+                                expedita? <speaker IDREF="m2"/> Libero 
+                                reprehenderit similique <exit IDREF="m1" />
+                                officiis repudiandae consequuntur debitis.
+                                <paragraph>
+                                    Lorem ipsum dolor, sit amet consectetur 
+                                    adipisicing elit. Eos minima labore quis 
+                                    optio, dicta adipisci illo ad expedita? 
+                                    Libero reprehenderit si <exit IDREF="m1" />
+                                    officiis repudiandae consequuntur
+                                    <entry IDREF="m1" /> ebitis saafas fsdfa
+                                    <speaker IDREF="m2"/>officia, aperiam esse 
+                                    aliquam iste.
+                                </paragraph>
+                            </subsection>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing 
+                            elit. Eos minima labore quis optio, dicta adipisci 
+                            illo ad expedita? Libero reprehenderit similique 
+                            officiis repudiandae consequuntur debitis officia.
+                            <paragraph>
+                                Lorem ipsum dolor, <entry IDREF="m2" /> sitasdf 
+                                amet consectetur adipisicing elit. Eos minima 
+                                Libero reprehenderit simili <exit IDREF="m1" />
+                                officiis repudiandae consequuntur debitis
+                                <speaker IDREF="m2"/> officia, aperiam esse 
+                                aliasdfgas.
+                            </paragraph>
+                            Lorem ipsum dolor, sit amet <speaker IDREF="m2" /> 
+                            adipisicing eli. Eos minima labore quis optio, 
+                            dicta adipisci illo ad expedita? Libero 
+                            reprehenderit similique officiis repudiandae  
+                            debitis officia, aperiam esse aliquam iste.
+                        </section>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing. 
+                        Eos minima labore quis optio, <exit IDREF="m2" />  
+                        Libero reprehenderit similique officiis repudiandae  
+                        debitis officia, aperiam esse aliquam iste.
+                    </discussion>
+                    <voting>
+                        <subject>Which light bulbs should we use?</subject>
+                        <alternative>
+                            <option name="Bailey">
+                                <voter IDREF="m1" />
+                            </option>
+                            <option name="Calex">
+                                <voter IDREF="m2" />
+                                <voter IDREF="m4" />
+                            </option>
+                            <option name="Bic">
+                                <voter IDREF="m3" />
+                            </option>
+                        </alternative>
+                    </voting>
+                </topic>
+                <topic>
+                    <topicTitle>Business Plan</topicTitle>
+                    <discussion>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing. 
+                        Eos minima labore quis optio, dicta adipisci illo ad? 
+                        Libero reprehenderit similique <speaker IDREF="m4" />  
+                        debitis officia, aperiam esse aliquam iste.
+                    </discussion>
+                    <voting>
+                        <subject>Should we invest?</subject>
+                        <motion>
+                            <membersInFavour>
+                                <voter IDREF="m1" />
+                                <voter IDREF="m4" />
+                            </membersInFavour>
+                            <membersAgainst>
+                                <voter IDREF="m3" />
+                            </membersAgainst>
+                            <membersAbstained>
+                                <voter IDREF="m2" />
+                            </membersAbstained>
+                        </motion>
+                    </voting>
+                </topic>
+            </topics>
+        </meeting>
+        <meeting>
+            <generalInformation>
+                <organName>All</organName>
+                <meetingType>festa</meetingType>
+                <local>Porto</local>
+                <date>
+                    <year>2018</year>
+                    <month>10</month>
+                    <day>26</day>
+                </date>
+                <time>
+                    <startingTime>
+                        <hour>17</hour>
+                        <minute>37</minute>
+                    </startingTime>
+                </time>
+                <workOrder>
+                    <matter>blabla</matter>
+                </workOrder>
+                <members>
+                    <meetingMember IDREF="m1"/>
+                    <meetingMember IDREF="m2" />
+                    <meetingMember IDREF="m3" />
+                </members>
+                <president IDREF="m1" />
+                <meetingWriter IDREF="m3" />
+            </generalInformation>
+            <topics>
+                <topic>
+                    <discussion>
+                        está fixe!!!
+                    </discussion>
+                </topic>
+            </topics>
+        </meeting>
+    </minutes>
+</document>
