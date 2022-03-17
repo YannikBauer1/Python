@@ -1,0 +1,172 @@
+% Aprendizagem não-relacional - Yannik Bauer
+% O meu programa consegue criar um arvore de decisao baseado no gini impurity que
+% é calculado para cada coluna em cada passo para escolher sempre a melhor opcao.
+% O programa também consegue agroupar uma coluna com entrades de numeros em que exitem
+% pelo menos 4 entradas diferentes para 3 grupos. Estes grupos estao feitos com a diferenca
+% do número minimo e numero maximo, divido por 3.
+
+% O programa primeiro verifica se há uma coluna com numeros com entrades e se for assim
+% agroupa-los e muda o Grid para os valores dos grupos.
+% depois comeca a calcular o gini impurity para cada coluna e escolha o numero médio mais baixo
+% para a raiz do arvore. Depois para cada opcao nessa coluna vai fazer um novo Grid cuja linha é
+% uma dessas opcoes e comeca a calcular o gini impurity para os restantes colunas para escolher
+% o segunite no. Isso vai acontercer até chega num ponto em que cada opcao da coluna tem só um
+% resultado(por exemplo yes ou no).
+
+% No fim o "writeDot" consegue fazer criar um ficheiro de dot com um graph do arvore criado no 
+% "trabalho".
+
+
+trabalho([Cond|Grid],Sol):-
+    verifyGrid(Grid,NGrid),
+    trabalho(Cond,NGrid,Sol).
+trabalho(Cond,Grid,[C1,PN,No]):-
+    giniDecision(Cond,Grid,[C1,PN],inf,_,_,0,_,N),
+    delElementN(Cond,N,NCond),
+    tree(PN,NCond,Grid,No,N).
+
+
+
+verifyGrid([A|Grid],NGrid):-	%verifica se existem colunas com números e agrupa-los se é necessario
+    numLines(A,L,1),
+    change(L,[A|Grid],NGrid).
+
+numLines([],[],_).	%dertermine as colunas com números
+numLines([A|AA],[N|L],N):-
+    number(A),
+    N1 is N+1,
+    numLines(AA,L,N1).
+numLines([_|AA],L,N):-
+    N1 is N+1,
+    numLines(AA,L,N1).
+
+change([],Grid,Grid).		%agrupa as colunas com números e faz um novo Grid com os números agrupados
+change([N|L],Grid,NGrid):-
+    getColumn(Grid,N,Col),
+    sort(Col,NCol),
+    length(NCol,LCol),
+    (LCol>3 ->  group(NCol,Groups), edit(Grid,Groups,N,NG), change(L,NG,NGrid); change(L,Grid,NGrid)).
+
+group(Col,Groups):-		%define 3 grupos para a coluna
+    max_list(Col,Max),
+    min_list(Col,Min),
+    D is Max-Min,
+    (D < 3 ->  Step is D/3; Step is D//3),
+    MiS is Min+Step,
+    MaS is Max-Step,
+    Groups = [lower(MiS),inter(MiS,MaS),higher(MaS)].
+
+edit([],_,_,[]).	%muda a coluna N para os valores agrupados
+edit([A|Grid],Groups,N,[NA|NG]):-
+    replace(A,Groups,N,NA),
+    edit(Grid,Groups,N,NG).
+replace([A|L],[lower(Low),inter(Low,High),higher(High)],1,[S|L]):-
+    (A<Low ->  S = lower(Low);(A>High ->  S = higher(High); S = inter(Low,High))).
+replace([A|L],Groups,N,[A|X]):-
+    N>1,
+    N1 is N-1,
+    replace(L,Groups,N1,X).
+
+
+
+giniDecision([_],_,[C,PN],_,C,PN,_,M,M).	%calcula os gini impuritys, compara os e decide a melhor opcao
+giniDecision([A|Cond],Grid,Sol,Gini,C,PN,N,M,SM):-
+    Grid\=[[_]|_],
+    N1 is N+1,
+    getColumn(Grid,N1,Col),
+    sort(Col,NCol),
+    calc(NCol,Grid,GiniSum,N1),
+    length(NCol,LCol),
+    NGini is GiniSum/LCol,
+    (NGini<Gini ->  giniDecision(Cond,Grid,Sol,NGini,A,NCol,N1,N1,SM); giniDecision(Cond,Grid,Sol,Gini,C,PN,N1,M,SM)).
+    
+calc([],_,0,_).	%calcula o gini impurity para uma coluna (uma opcao por exemplo "windy")
+calc([P|PN],Grid,GiniSum,M):-
+    posMGrid(P,Grid,NGrid,M),
+    countRes(NGrid,Res),
+    sumlist(Res,Sum),
+    probRes(Res,NRes,Sum),
+    gini(NRes,Gini,0),
+    calc(PN,Grid,Gini2,M),
+    GiniSum is Gini+Gini2.
+    
+countRes([A|Grid],Res):-	% faz uma lista cujas entradas sao os numeros de vezes para cada resultado
+    length(A,L),
+    getColumn([A|Grid],L,Col),
+    sort(Col,NCol),
+    countRes(Col,NCol,Res,Col).
+countRes([],[_],[0],_).
+countRes([],[_|NCol],[0|Res],SCol):-
+    countRes(SCol,NCol,Res,SCol).
+countRes([A|Col],[C|NCol],[R|Res],SCol):-
+    (A=C ->  countRes(Col,[C|NCol],[R2|Res],SCol), R is 1+R2; countRes(Col,[C|NCol],[R|Res],SCol)).
+
+probRes([],[],_).	%faz dos numeros probabilidades
+probRes([A|Res],[B|NRes],Sum):-
+    B is A/Sum,
+    probRes(Res,NRes,Sum).
+
+gini([],Gini,G):-	%calcule o gini impurity
+    Gini is 1-G.
+gini([A|NRes],Gini,G):-
+    NG is G+A^2,
+    gini(NRes,Gini,NG).
+
+
+
+tree([],_,_,[],_).
+tree([P|Rest],Cond,Grid,[S|No],M):-   %olha para cada pos se só tem uma solucao e coloca no arvore ou chama trabalho para rever as linhas da pos
+	posMGrid(P,Grid,NGrid,M),
+	gridMcut(NGrid,GC,M),
+	(avaliate(NGrid,SS) -> S=SS, tree(Rest,Cond,Grid,No,M); trabalho(Cond,GC,S), tree(Rest,Cond,Grid,No,M)).
+
+avaliate([L|NGrid],S):-   %olha se a ultima coluna é composto só de yes ou só de no
+    last(L,A),
+	avaliate(A,NGrid,S).
+avaliate(S,[],S).
+avaliate(A,[L|NGrid],S):-
+    last(L,AL),
+    AL=A,
+    avaliate(A,NGrid,S).
+
+
+
+getColumn([],_,[]).		%faz uma lista dos elementos da coluna N
+getColumn([A|Grid],N,[X|Ele]):-
+    listM(X,A,N),
+    getColumn(Grid,N,Ele).
+
+listM(X,[X|_],1).	%dá o elemento M da lista
+listM(X,[_|L],M) :- M > 1, M1 is M - 1, listM(X,L,M1).
+
+posMGrid(_,[],[],_).	%faz uma novo Grid com as linhas cuja M-esimo entrada é P (por exemplo "rainy")
+posMGrid(P,[L|Grid],NGrid,M):-
+    listM(A,L,M),
+    A=P ->  NGrid=[L|NG], posMGrid(P,Grid,NG,M); posMGrid(P,Grid,NGrid,M).
+
+delElementN([_|L],1,L).		%apaga o elemento N da lista
+delElementN([A|L],N,[A|X]):-
+    N>1,
+    N1 is N-1,
+    delElementN(L,N1,X).
+
+gridMcut([],[],_).	%faz uma novo Grid sem a coluna M 
+gridMcut([L|Rest],[NL|NGrid],M):-
+    delElementN(L,M,NL),
+	gridMcut(Rest,NGrid,M).
+
+
+
+writeDot(G):-	%cria um ficheiro de dot com o arvore
+    open('tree.dot', write,T),
+    format(T,'graph { ~n',[]),
+    writeT(G,T),
+    format(T,'} ~n',[]),
+    close(T).
+writeT([Pai|L],T):-
+    writeL(Pai,L,T).
+writeL(_,[[],[]],_).
+writeL(Pai,[[L1|R1],[L2|R2]],T):-
+    (is_list(L2) ->  L2 = [A|_], format(T,'"~s"->"~s" ~n "~s"->"~s"',[Pai,L1,L1,A]) ,writeT(L2,T) ; format(T,'"~s"->"~s" ~n "~s"->"~s"',[Pai,L1,L1,L2])),
+    append([R1],[R2],R),
+    writeL(Pai,R,T).
